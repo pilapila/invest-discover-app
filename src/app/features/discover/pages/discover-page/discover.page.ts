@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonSearchbar } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -30,6 +31,8 @@ export class DiscoverPage {
   isBuyModalOpen = signal<boolean>(false);
   trendingStocks = this.portfolioService.trendingStocks;
 
+  private destroyRef = inject(DestroyRef);
+
   constructor(private portfolioService: PortfolioService) {}
 
   onStockCardClick(stock: TrendingStock) {
@@ -43,14 +46,16 @@ export class DiscoverPage {
   }
 
   onBuyOrder(order: BuyOrder) {
-    this.portfolioService.executeBuyOrder(order).subscribe({
-      next: (newHolding) => {
-        console.log('Order executed:', newHolding);
-        this.onCloseBuyModal();
-      },
-      error: (error) => {
-        console.error('Order failed:', error);
-      }
-    });
+    this.portfolioService.executeBuyOrder(order)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (newHolding) => {
+          console.log('Order executed:', newHolding);
+          this.onCloseBuyModal();
+        },
+        error: (error) => {
+          console.error('Order failed:', error);
+        }
+      });
   }
 }
