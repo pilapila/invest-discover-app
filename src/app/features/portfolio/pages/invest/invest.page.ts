@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { StockInstrumentComponent } from "../../../../components/stock-instrument/stock-instrument.component";
@@ -26,19 +26,13 @@ import { StockCardComponent } from "../../../../components/stock-card/stock-card
   ],
 })
 export class InvestPage {
-  // Signal-based state
   selectedStock = signal<TrendingStock | null>(null);
   isBuyModalOpen = signal<boolean>(false);
 
-  // Computed values from service
   portfolio = this.portfolioService.portfolio;
   trendingStocks = this.portfolioService.trendingStocks;
 
   constructor(private portfolioService: PortfolioService) {}
-
-  trackBySymbol(index: number, item: any): string {
-    return item.symbol;
-  }
 
   onStockCardClick(stock: TrendingStock) {
     this.selectedStock.set(stock);

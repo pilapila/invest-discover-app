@@ -2,7 +2,7 @@ import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonCard, IonCardContent } from '@ionic/angular/standalone';
 import { StockTypeBadgeComponent } from '../stock-type-badge/stock-type-badge.component';
-import {TrendingStock} from "../../models/stock/stock.interface";
+import { TrendingStock } from "../../models/stock/stock.interface";
 
 @Component({
   selector: 'app-stock-card',
