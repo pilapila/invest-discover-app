@@ -1,0 +1,62 @@
+ion-title {
+  font-weight: 600;
+  color: black;
+}
+
+ion-header {
+  box-shadow: none;
+}
+
+.discover-content {
+  --background: #fff;
+}
+
+.discover-container {
+  padding: 20px;
+  max-width: 100%;
+}
+
+.trending-section {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 16px 0;
+}
+
+.trending-cards-container {
+  display: flex;
+  overflow-x: auto;
+  padding: 8px 0;
+  gap: 8px;
+
+  // Hide scrollbar but keep functionality
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.coming-soon {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  font-style: italic;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .discover-container {
+    padding: 16px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+}
+

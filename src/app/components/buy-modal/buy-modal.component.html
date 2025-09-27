@@ -1,0 +1,57 @@
+<ion-modal [isOpen]="isOpen()" (didDismiss)="onClose()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{ stock()?.symbol }} ${{ currentPrice() | number:'1.2-2' }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="onClose()">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="buy-modal-content">
+      <div class="form-container">
+        <ion-item>
+          <ion-label>Order Type</ion-label>
+          <ion-select
+            [value]="orderType()"
+            (ionChange)="onOrderTypeChange($event.detail.value)"
+            placeholder="Select order type">
+            <ion-select-option value="market">At market</ion-select-option>
+            <ion-select-option value="limit">Limit</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Amount</ion-label>
+          <ion-input
+            type="number"
+            [value]="amount()"
+            (ionInput)="onAmountChange($event.detail.value)">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Shares</ion-label>
+          <ion-input
+            type="number"
+            [value]="shares()"
+            (ionInput)="onSharesChange($event.detail.value)">
+          </ion-input>
+        </ion-item>
+      </div>
+
+      <div class="buy-button-container">
+        <ion-button
+          expand="block"
+          class="buy-button"
+          (click)="onBuy()"
+          [disabled]="!isValidOrder()">
+          Click to buy
+        </ion-button>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

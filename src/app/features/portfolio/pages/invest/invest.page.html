@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Dashboard
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="invest-content">
+  <div class="dashboard-container">
+    <div class="total-equity-section">
+      <p class="equity-label">Total equity</p>
+      <h1 class="equity-value">${{ portfolio().totalEquity | number:'1.0-0' }}</h1>
+    </div>
+
+    <div class="holdings-section">
+      <h2 class="section-title">Holdings</h2>
+      <div class="column-headers">
+        <span class="header-stock">Stock</span>
+        <span class="header-price">Price</span>
+        <span class="header-change">Change</span>
+      </div>
+
+      <div class="holdings-list">
+        @for (holding of portfolio().holdings; track holding) {
+          <app-stock-instrument
+            [holding]="holding"
+            [isNew]="false">
+          </app-stock-instrument>
+        }
+      </div>
+    </div>
+
+    <div class="trending-section">
+      <h2 class="section-title">Trending stocks</h2>
+      <div class="trending-cards-container">
+        @for (stock of trendingStocks(); track stock.symbol) {
+          <app-stock-card
+            [stock]="stock"
+            (cardClick)="onStockCardClick(stock)">
+          </app-stock-card>
+        }
+      </div>
+    </div>
+  </div>
+
+  <app-buy-modal
+    [stock]="selectedStock()"
+    [isOpen]="isBuyModalOpen()"
+    (close)="onCloseBuyModal()"
+    (buyOrder)="onBuyOrder($event)">
+  </app-buy-modal>
+</ion-content>

@@ -1,0 +1,13 @@
+<div class="stock-instrument" [class.new-item]="isNew()">
+  <div class="stock-info">
+    <h3 class="stock-symbol">{{ holding().symbol }}</h3>
+    <p class="shares">{{ holding().shares | number:'1.4-4' }} shares</p>
+  </div>
+
+  <div class="price-info">
+    <p class="price">${{ holding().currentPrice | number:'1.2-2' }}</p>
+    <div class="change-badge" [ngClass]="getChangeColor()">
+      {{ holding()?.changePercent > 0 ? '+' : '' }}{{ holding().changePercent | number:'1.2-2' }}%
+    </div>
+  </div>
+</div>

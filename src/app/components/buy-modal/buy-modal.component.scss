@@ -1,0 +1,47 @@
+.buy-modal-content {
+  --background: #fff;
+}
+
+.form-container {
+  padding: 20px;
+}
+
+.buy-button-container {
+  padding: 20px;
+  padding-top: 0;
+}
+
+.buy-button {
+  --background: #000;
+  --color: #fff;
+  --border-radius: 12px;
+  height: 56px;
+  font-weight: 600;
+  font-size: 16px;
+  position: relative;
+  overflow: hidden;
+
+  ion-icon {
+    margin-right: 4px;
+    font-size: 14px;
+  }
+
+  &:not([disabled]):active {
+    transform: scale(0.98);
+  }
+}
+
+ion-item {
+  --border-radius: 8px;
+  --border-color: #e0e0e0;
+  margin-bottom: 16px;
+}
+
+ion-select {
+  --placeholder-color: #666;
+}
+
+ion-input {
+  --placeholder-color: #666;
+}
+

@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Discover
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="discover-content">
+  <div class="discover-container">
+    <div class="trending-section">
+      <ion-searchbar></ion-searchbar>
+
+      <div class="recently-searched-section">
+        <h2 class="section-title">Recently searched</h2>
+        <div>...</div>
+      </div>
+
+
+      <div class="trending-cards-section">
+        <h2 class="section-title">Top {{ trendingStocks().length }} volume stock</h2>
+        <div class="trending-cards-container">
+          @for(stock of trendingStocks(); track stock.symbol) {
+            <app-stock-card
+              [stock]="stock"
+              (cardClick)="onStockCardClick(stock)">
+            </app-stock-card>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-buy-modal
+    [stock]="selectedStock()"
+    [isOpen]="isBuyModalOpen()"
+    (close)="onCloseBuyModal()"
+    (buyOrder)="onBuyOrder($event)">
+  </app-buy-modal>
+</ion-content>

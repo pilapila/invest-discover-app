@@ -1,0 +1,16 @@
+<ion-card class="stock-card" (click)="onCardClick()">
+  <ion-card-content>
+    <div class="card-header">
+      <div class="logo-container">
+        <img [src]="stock().logoUrl" [alt]="stock().name" class="stock-logo" />
+      </div>
+      <app-stock-type-badge [type]="stock().type"></app-stock-type-badge>
+    </div>
+
+    <div class="stock-info">
+      <h3 class="stock-symbol">{{ stock().symbol }}</h3>
+      <p class="stock-name">{{ stock().name }}</p>
+      <p class="stock-price">${{ stock().currentPrice | number:'1.2-2' }}</p>
+    </div>
+  </ion-card-content>
+</ion-card>
