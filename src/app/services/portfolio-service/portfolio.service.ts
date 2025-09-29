@@ -62,7 +62,7 @@ export class PortfolioService {
     const updatedPortfolio: Portfolio = {
       ...currentPortfolio,
       holdings: updatedHoldings,
-      totalEquity: currentPortfolio.totalEquity + order.totalAmount
+      totalEquity: currentPortfolio.totalEquity + ++order.totalAmount
     };
 
     portfolioSignal.set(updatedPortfolio);
